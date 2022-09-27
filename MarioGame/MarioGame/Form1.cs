@@ -13,13 +13,19 @@ namespace MarioGame
         //plant thing
         private void plant_timer_Tick(object sender, EventArgs e)
         {
-            if(plant_default_location[0] <= -52)
+            bool game_over = 
+                plant_default_location[0] <= 64 &&
+                plant_default_location[0] >= 26 &&
+                mario_default_location[1] >= 218;
+            
+            if (plant_default_location[0] <= -52)
             {
                 plant_default_location[0] = 735;
                 Flower.Location = new Point(plant_default_location[0], plant_default_location[1]);
             }
-            else if(plant_default_location[0] <= 64 && plant_default_location[0] >= 26 && mario_default_location[1]>= 218)
+            else if(game_over)
             {
+                game_Over.Visible = true;
                 plant_timer.Enabled = false;
                 mario_timer.Enabled = false;
             }
@@ -30,10 +36,6 @@ namespace MarioGame
             }
         }
 
-        private void Form1_Click(object sender, EventArgs e)
-        {
-            mario_timer.Enabled = true;
-        }
 
         //Jumping
         int jump_count = 0;
@@ -41,17 +43,34 @@ namespace MarioGame
         {
             if(jump_count < 4)
             {
-                mario_default_location[1] -= 30;
+                mario_default_location[1] -= 60;
                 Mario.Location = new Point(mario_default_location[0], mario_default_location[1]);
                 jump_count++;
             }
             else
             {
-                mario_default_location[1] += 120;
-                Mario.Location = new Point(mario_default_location[0], mario_default_location[1]);
                 jump_count=0;
                 mario_timer.Enabled = false;
             }
+        }
+
+        private void gravity_Tick(object sender, EventArgs e)
+        {
+            if(mario_default_location[1] < 265)
+            {
+                mario_default_location[1] += 30;
+                Mario.Location = new Point(mario_default_location[0], mario_default_location[1]);
+            }
+            if (mario_default_location[1] > 265)
+            {
+                mario_default_location[1] = 265;
+                Mario.Location = new Point(mario_default_location[0], mario_default_location[1]);
+            }
+        }
+
+        private void jump_btn_Click(object sender, EventArgs e)
+        {
+            mario_timer.Enabled = true;
         }
     }
 }
