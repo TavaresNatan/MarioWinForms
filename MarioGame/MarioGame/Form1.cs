@@ -10,10 +10,24 @@ namespace MarioGame
             InitializeComponent();
         }
 
+        //plant thing
         private void plant_timer_Tick(object sender, EventArgs e)
         {
-            plant_default_location[0] -= 30;
-            Flower.Location = new Point(plant_default_location[0], plant_default_location[1]);
+            if(plant_default_location[0] <= -52)
+            {
+                plant_default_location[0] = 735;
+                Flower.Location = new Point(plant_default_location[0], plant_default_location[1]);
+            }
+            else if(plant_default_location[0] <= 64 && plant_default_location[0] >= 26 && mario_default_location[1]>= 218)
+            {
+                plant_timer.Enabled = false;
+                mario_timer.Enabled = false;
+            }
+            else
+            {
+                plant_default_location[0] -= 30;
+                Flower.Location = new Point(plant_default_location[0], plant_default_location[1]);
+            }
         }
 
         private void Form1_Click(object sender, EventArgs e)
