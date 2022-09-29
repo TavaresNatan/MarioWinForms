@@ -37,6 +37,11 @@
             this.mario_timer = new System.Windows.Forms.Timer(this.components);
             this.gravity = new System.Windows.Forms.Timer(this.components);
             this.game_Over = new System.Windows.Forms.Label();
+            this.score_lbl = new System.Windows.Forms.Label();
+            this.score = new System.Windows.Forms.Label();
+            this.buy_points = new System.Windows.Forms.Label();
+            this.bp = new System.Windows.Forms.Label();
+            this.pause = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Flower)).BeginInit();
@@ -90,18 +95,18 @@
             // plant_timer
             // 
             this.plant_timer.Enabled = true;
-            this.plant_timer.Interval = 50;
+            this.plant_timer.Interval = 10;
             this.plant_timer.Tick += new System.EventHandler(this.plant_timer_Tick);
             // 
             // mario_timer
             // 
-            this.mario_timer.Interval = 50;
+            this.mario_timer.Interval = 10;
             this.mario_timer.Tick += new System.EventHandler(this.mario_timer_Tick);
             // 
             // gravity
             // 
             this.gravity.Enabled = true;
-            this.gravity.Interval = 50;
+            this.gravity.Interval = 10;
             this.gravity.Tick += new System.EventHandler(this.gravity_Tick);
             // 
             // game_Over
@@ -116,18 +121,79 @@
             this.game_Over.Text = "GAME OVER";
             this.game_Over.Visible = false;
             // 
+            // score_lbl
+            // 
+            this.score_lbl.AutoSize = true;
+            this.score_lbl.Font = new System.Drawing.Font("Terminator Two", 34F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.score_lbl.ForeColor = System.Drawing.Color.White;
+            this.score_lbl.Location = new System.Drawing.Point(12, 9);
+            this.score_lbl.Name = "score_lbl";
+            this.score_lbl.Size = new System.Drawing.Size(198, 46);
+            this.score_lbl.TabIndex = 4;
+            this.score_lbl.Text = "Score:";
+            // 
+            // score
+            // 
+            this.score.AutoSize = true;
+            this.score.Font = new System.Drawing.Font("Terminator Two", 34F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.score.ForeColor = System.Drawing.Color.White;
+            this.score.Location = new System.Drawing.Point(216, 9);
+            this.score.Name = "score";
+            this.score.Size = new System.Drawing.Size(50, 46);
+            this.score.TabIndex = 5;
+            this.score.Text = "0";
+            // 
+            // buy_points
+            // 
+            this.buy_points.AutoSize = true;
+            this.buy_points.Font = new System.Drawing.Font("Terminator Two", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.buy_points.ForeColor = System.Drawing.Color.White;
+            this.buy_points.Location = new System.Drawing.Point(12, 55);
+            this.buy_points.Name = "buy_points";
+            this.buy_points.Size = new System.Drawing.Size(205, 27);
+            this.buy_points.TabIndex = 6;
+            this.buy_points.Text = "buy points:";
+            // 
+            // bp
+            // 
+            this.bp.AutoSize = true;
+            this.bp.Font = new System.Drawing.Font("Terminator Two", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.bp.ForeColor = System.Drawing.Color.White;
+            this.bp.Location = new System.Drawing.Point(216, 55);
+            this.bp.Name = "bp";
+            this.bp.Size = new System.Drawing.Size(30, 27);
+            this.bp.TabIndex = 7;
+            this.bp.Text = "0";
+            // 
+            // pause
+            // 
+            this.pause.AutoSize = true;
+            this.pause.Font = new System.Drawing.Font("Terminator Two", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.pause.ForeColor = System.Drawing.Color.White;
+            this.pause.Location = new System.Drawing.Point(745, 9);
+            this.pause.Name = "pause";
+            this.pause.Size = new System.Drawing.Size(43, 27);
+            this.pause.TabIndex = 8;
+            this.pause.Text = "| |";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumTurquoise;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pause);
+            this.Controls.Add(this.bp);
+            this.Controls.Add(this.buy_points);
+            this.Controls.Add(this.score);
+            this.Controls.Add(this.score_lbl);
             this.Controls.Add(this.game_Over);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Flower);
             this.Controls.Add(this.Mario);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Mario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Flower)).EndInit();
@@ -146,5 +212,10 @@
         private System.Windows.Forms.Timer gravity;
         private Label game_Over;
         private Button jump_btn;
+        private Label score_lbl;
+        private Label score;
+        private Label buy_points;
+        private Label bp;
+        private Label pause;
     }
 }
